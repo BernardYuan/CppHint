@@ -2,6 +2,11 @@
 // Created by leo on 12/11/17.
 //
 
+#include <llvm/ADT/StringRef.h>
+#include <llvm/IR/Constants.h>
+#include <llvm/IR/GlobalValue.h>
+#include <llvm/IR/Module.h>
+
 #include "Utils.h"
 
 llvm::Constant* createConstantString(llvm::Module& m,
