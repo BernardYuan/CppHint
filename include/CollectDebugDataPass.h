@@ -7,14 +7,14 @@
 #include "llvm/Pass.h"
 #include "llvm/IR/CallSite.h"
 
-namespace cgprofiler {
+namespace CppHinter {
 
 struct CollectDebugDataPass : public llvm::ModulePass {
   static char ID;
-
   CollectDebugDataPass() : llvm::ModulePass(ID) {}
-
   bool runOnModule(llvm::Module& m) override;
+ private:
+  std::string ExtractMetadataType(llvm::Metadata const *type, bool is_scope);
 };
 }
 

@@ -260,7 +260,7 @@ static void instrumentForDynamicCount(Module &m) {
 
   // Build up all of the passes that we want to run on the module.
   legacy::PassManager pm;
-  pm.add(new cgprofiler::CollectDebugDataPass());
+  pm.add(new CppHinter::CollectDebugDataPass());
   pm.add(createVerifierPass());
   pm.run(m);
 
