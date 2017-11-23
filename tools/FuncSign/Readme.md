@@ -37,13 +37,15 @@ Apply the tool:
 
 Here is the result:
 ```
-int char ::-> int
-char char ::-> int
-::-> void
-float double ::-> void
-float float ::-> int
-int int ::-> int
-int char * ::-> int
+int, char, int
+char, char, int
+void
+float, double, void
+float, float, int
+int, int, int
+int, char *, int
 ```
+
+Basically, one line represents one function with: `arg1 type, arg2 type, ..., return type`. It at least contain `return type`.
 
 If you uncomment the line `include<iostream>`, it will also generates the functions from `iostream`.

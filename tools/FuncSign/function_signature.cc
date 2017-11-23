@@ -70,9 +70,9 @@ int main(int argc, char *argv[]) {
             // }
 
             auto arg_type = Convert(clang_getTypeSpelling(clang_getArgType(type, i)));
-            std::cout << arg_type << " ";
+            std::cout << arg_type << ", ";
           }
-          std::cout << "::-> " << return_type << "\n";
+          std::cout << return_type << "\n";
         }
 
 
