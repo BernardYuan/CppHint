@@ -33,7 +33,8 @@ public:
                 // Compute the offset.
                 unsigned offset = E->getLocEnd().getRawEncoding() - E->getLocStart().getRawEncoding();
 
-                Replacement hintReplacement(*(Result.SourceManager),E->getLocStart(), offset+1, replacementString);
+                Replacement hintReplacement(*(Result.SourceManager),E->getLocStart(), offset+2,
+					"auto hintReturn = " + replacementString + ";\nstd::cout << std::typeid(hintReturn).name()<<std::endl;");
 
                 // add all the replacements to the map so that they are effective.
                 auto filePath = hintReplacement.getFilePath().str();

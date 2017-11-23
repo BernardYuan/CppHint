@@ -1,6 +1,6 @@
 ##HintRefactor
 
-A simple refactoring tool which modifies a cpp file by detecting the use specified breakpoint <code>CppHint</code> function call and replace it with supplied function call.
+A simple refactoring tool which modifies a cpp file by detecting the use specified breakpoint <code>CppHint</code> function call and replace it with supplied function call. In addition, it outputs the runtime type of the object returned from the supplied function call.
 ### Build
 Just use the contained Makefile. Run <code>make</code>.
 
@@ -34,7 +34,8 @@ int main(int argc, char** argv) {
 	float b;
 	
 	//The break point
-	whatever(a,b);
+	auto hintReturn = whatever(a,b);
+	std::out << std::typeid(hintReturn).name() << std::endl;
 	return 0;
 }
 ~~~
