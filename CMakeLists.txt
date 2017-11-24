@@ -7,7 +7,6 @@ list(APPEND CMAKE_MODULE_PATH "${LLVM_DIR}")
 set(PACKAGE_NAME CppHinter)
 set(PACKAGE_VERSION 0.1)
 set(PACKAGE_STRING "${PACKAGE_NAME} ${PACKAGE_VERSION}")
-set(PACKAGE_BUGREPORT "wsumner@sfu.ca")
 
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fno-rtti -Wall")
@@ -52,8 +51,6 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 link_directories(${LIBRARY_OUTPUT_PATH})
 set(CMAKE_TEMP_LIBRARY_PATH "${PROJECT_BINARY_DIR}/lib")
 # TODO: Add install path to the list....
-
-add_subdirectory(lib)
 
 option(ENABLE_SANITIZERS "Compile tool with address sanitizer enabled" Off)
 if (ENABLE_SANITIZERS)

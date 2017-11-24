@@ -1,2 +1,2 @@
-add_subdirectory(CppHinter)
+add_subdirectory(HintRefactor)
 
