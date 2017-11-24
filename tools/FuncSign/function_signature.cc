@@ -58,8 +58,8 @@ int main(int argc, char *argv[]) {
           auto type = clang_getCursorType(c);
           // auto cursorKind = clang_getCursorKindSpelling(clang_getCursorKind(c));
 
-          // auto function_name = Convert(clang_getCursorSpelling(c));
-          auto return_type   = Convert(clang_getTypeSpelling(clang_getResultType(type)));
+          auto function_name = Convert(clang_getCursorSpelling(c));
+          std::cout << function_name << ", ";
 
           int num_args = clang_Cursor_getNumArguments(c);
           for (int i = 0; i < num_args; ++i) {
@@ -72,6 +72,8 @@ int main(int argc, char *argv[]) {
             auto arg_type = Convert(clang_getTypeSpelling(clang_getArgType(type, i)));
             std::cout << arg_type << ", ";
           }
+
+          auto return_type   = Convert(clang_getTypeSpelling(clang_getResultType(type)));
           std::cout << return_type << "\n";
         }
 
