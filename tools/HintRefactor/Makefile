@@ -1,10 +1,5 @@
-HintRefactor : HintRefactor.o
-	clang HintRefactor.o \
-	-o HintRefactor \
-	-L/usr/local/opt/llvm/lib \
-	-lLLVM \
-	-lLLVMCore \
-	-lc++ \
+CLANG_LIBS := \
+	-Wl,--start-group \
 	-lclangAST \
 	-lclangASTMatchers \
 	-lclangAnalysis \
@@ -16,6 +11,7 @@ HintRefactor : HintRefactor.o
 	-lclangLex \
 	-lclangParse \
 	-lclangSema \
+	-lclangEdit \
 	-lclangRewrite \
 	-lclangRewriteFrontend \
 	-lclangStaticAnalyzerFrontend \
@@ -25,12 +21,19 @@ HintRefactor : HintRefactor.o
 	-lclangToolingCore \
 	-lclangTooling \
 	-lclangFormat \
+	-Wl,--end-group
 
-HintRefactor.o : HintRefactor.cpp
-	clang -std=c++11 -c HintRefactor.cpp \
-	-I/usr/local/opt/llvm/include \
-	-I/usr/local/opt/llvm/include/c++/v1 \
+CLANG_INCLUDES := -I`llvm-config --includedir` 
+
+CXX := g++
+CXXFLAGS := -fno-rtti -O0 -g
+
+LLVM_CXXFLAGS := `llvm-config --cxxflags`
+LLVM_LDFLAGS := `llvm-config --ldflags --libs --system-libs`
+
+HintRefactor: HintRefactor.cpp
+	$(CXX) $(CXXFLAGS) $(LLVM_CXXFLAGS) $(CLANG_INCLUDES) $^ \
+		$(CLANG_LIBS) $(LLVM_LDFLAGS) -o $@
 
 clean:
 	rm HintRefactor
-	rm *.o

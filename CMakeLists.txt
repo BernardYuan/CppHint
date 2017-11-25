@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 project(CppHinter)
 
+cmake_policy(SET CMP0003 OLD)
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
 list(APPEND CMAKE_MODULE_PATH "${LLVM_DIR}")
 
@@ -43,20 +45,6 @@ message("LLVM STATUS:
 include_directories(${LLVM_INCLUDE_DIRS})
 link_directories(${LLVM_LIBRARY_DIRS})
 add_definitions(${LLVM_DEFINITIONS})
-
-############## FINAL PROJECT CONFIG #################
-
-# And the project header and library paths
-include_directories(${CMAKE_SOURCE_DIR}/include)
-link_directories(${LIBRARY_OUTPUT_PATH})
-set(CMAKE_TEMP_LIBRARY_PATH "${PROJECT_BINARY_DIR}/lib")
-# TODO: Add install path to the list....
-
-option(ENABLE_SANITIZERS "Compile tool with address sanitizer enabled" Off)
-if (ENABLE_SANITIZERS)
-  message(STATUS "Enabling sanitizers")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address,undefined")
-endif (ENABLE_SANITIZERS)
 
 add_subdirectory(tools)
 
