@@ -13,7 +13,7 @@ class VariableVisitor : public clang::RecursiveASTVisitor<VariableVisitor> {
     if (auto decl = clang::dyn_cast_or_null<clang::DeclStmt>(s)) {
       for (auto b = decl->decl_begin(), e = decl->decl_end(); b != e; b++) {
         if (auto var = clang::dyn_cast<clang::VarDecl>(*b)) {
-          if (var->getName() == "cpp_hint_end") {
+          if (var->getName() == "CppHint") {
             for (auto pair: stack_) {
               std::cout << pair.first << " " << pair.second << std::endl;
             }
