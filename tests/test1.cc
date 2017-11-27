@@ -1,20 +1,22 @@
-/* #include<iostream> */
+int biu(int a, int b) {
 
-extern int external(int, char);
+  int c = 0;
+  return c;
+}
 
-int decl(char, char);
+char foo(float a, int b) {
+  return 1;
+}
 
-void fun1() {}
-void fun2(float, double) {}
+char foo(int a, int b) {
+  return 0;
+}
 
-class C1 {
-    int getPrivateFunc(float, float) {}
-  public:
-      int getPublicFunc(int, int) {}
+typedef int CPPHINT;
 
-};
-
-int main(int argc, char *argv) {
-    return 0;
-
+int main() {
+  int ccc, a = 3;
+  a = 3 + 5;
+  // CppHint: ?, int, ?
+  return a;
 }

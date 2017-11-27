@@ -4,6 +4,9 @@ import argparse
 import os
 
 SYMBOL = 'CppHint'
+CANDIDATE_FILE = '/tmp/candidate.cpp'
+VARIABLE_FILE = '/tmp/variable.cpp'
+EXECUTABLE = '/tmp/cpphinter'
 
 class NameMap:
     def __init__(self):
@@ -61,7 +64,7 @@ def parse_variables(var):
     return candidats
 
 def generate_candidate_variables(build_dir):
-    src_path = os.path.abspath('variables.cpp')
+    src_path = os.path.abspath(VARIABLE_FILE)
     build_dir = os.path.join(build_dir, 'bin')
     return execute(['./FindVariables', src_path], parse_variables, build_dir)
 
@@ -75,7 +78,7 @@ def execute(command, post_processing, build_dir=None, shell=False):
     return post_processing(data.decode('utf-8').strip())
 
 def process_source_file(src):
-    var_file = open("variables.cpp", 'w+')
+    var_file = open(VARIABLE_FILE, 'w+')
     with open(src, "r") as f:
         for l in f:
             if SYMBOL in l:
@@ -163,7 +166,7 @@ def type_info(out):
 
 def generate_and_build(candidates, src):
     for candidate in candidates:
-        out = open("candidate.cpp", 'w+')
+        out = open(CANDIDATE_FILE, 'w+')
         out.write("#include<iostream>\n")
         out.write("#include<typeinfo>\n")
         with open(src, "r") as f:
@@ -175,9 +178,10 @@ def generate_and_build(candidates, src):
                 else:
                     out.write(l)
         out.close()
-        execute(["g++", "./candidate.cpp", '-std=c++11'], dumb_processor)
+        execute(["g++", CANDIDATE_FILE, '-std=c++11', '-o', EXECUTABLE], 
+                dumb_processor)
         print(candidate + ":")
-        execute(["./a.out"], type_info)
+        execute([EXECUTABLE], type_info)
 
 def main():
     args = parse_args()
