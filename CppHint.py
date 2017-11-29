@@ -173,14 +173,14 @@ def generate_and_build(candidates, src):
             for l in f:
                 if SYMBOL in l:
                     out.write("auto hintReturn=" + candidate + ";\n")
-                    out.write("std::cout << typeid(hintReturn).name()"
+                    out.write("std::cout << typeid(*hintReturn).name()"
                             " << std::endl;\n")
                 else:
                     out.write(l)
         out.close()
-        execute(["g++", CANDIDATE_FILE, '-std=c++11', '-o', EXECUTABLE], 
+        execute(["clang++", CANDIDATE_FILE, '-std=c++11', '-o', EXECUTABLE], 
                 dumb_processor)
-        print(candidate + ":")
+        print(candidate + ": ", end='')
         execute([EXECUTABLE], type_info)
 
 def main():
