@@ -38,4 +38,5 @@ set(LLVM_INCLUDE_DIRS ${LLVM_INCLUDE_DIR})
 set(LLVM_DEFINITIONS ${LLVM_DEFINITIONS} "-fno-rtti")
 
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(LLVM DEFAULT_MSG LLVM_LIBRARIES LLVM_INCLUDE_DIRS)
+link_directories(${LLVM_LIB_DIR})
+find_package_handle_standard_args(LLVM DEFAULT_MSG LLVM_LIBRARIES LLVM_INCLUDE_DIRS LLVM_LIB_DIR)
