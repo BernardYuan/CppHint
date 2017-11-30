@@ -1,15 +1,14 @@
-int biu(int a, int b) {
+int *biu(int a, int b) {
 
-  int c = 0;
-  return c;
+  return new int;
 }
 
-char foo(float a, int b) {
-  return 1;
+char *foo(float a, int b) {
+  return new char;
 }
 
-char foo(int a, int b) {
-  return 0;
+char *foo(int a, int b) {
+  return new char;
 }
 
 typedef int CPPHINT;
