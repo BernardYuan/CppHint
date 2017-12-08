@@ -162,7 +162,7 @@ def dumb_processor(out):
     pass
 
 def type_info(out):
-    print(out)
+    print(out[1:])
 
 def generate_and_build(candidates, src):
     for candidate in candidates:
